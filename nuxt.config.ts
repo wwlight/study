@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@unocss/nuxt', '@vueuse/nuxt', '@nuxt/eslint'],
+  modules: [
+    '@unocss/nuxt',
+    '@vueuse/nuxt',
+    '@nuxt/eslint',
+    '@nuxtjs/color-mode',
+  ],
   ssr: false,
   pages: {
     pattern: ['**/*.vue', '!**/_*'],
