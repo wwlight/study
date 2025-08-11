@@ -2,6 +2,10 @@
 defineOptions({
   name: 'Demo',
 })
+
+definePageMeta({
+  title: '文本反差色效果',
+})
 </script>
 
 <template>

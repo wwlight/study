@@ -10,12 +10,15 @@ export default defineNuxtConfig({
   pages: {
     pattern: ['**/*.vue', '!**/_*'],
   },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   css: [
     '@unocss/reset/tailwind.css',
   ],
   features: {
-    inlineStyles: false, // For UnoCSS
+    inlineStyles: false,
   },
   compatibilityDate: '2025-07-15',
   eslint: {

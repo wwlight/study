@@ -3,7 +3,6 @@
 </script>
 
 <template>
-  <!-- HTML+CSS 渐变发光卡片 -->
   <div class="flex flex-wrap justify-center">
     <div class="box">
       <div class="glass" />
