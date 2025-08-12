@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@vueuse/nuxt',
     '@nuxt/eslint',
-    '@nuxtjs/color-mode',
   ],
   ssr: false,
   pages: {
