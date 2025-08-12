@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+definePageMeta({
+  title: '渐变发光卡片',
+})
 </script>
 
 <template>

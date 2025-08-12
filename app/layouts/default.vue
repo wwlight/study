@@ -37,9 +37,9 @@ function handleMenuClick(menu: any) {
         </li>
       </ul>
     </aside>
-    <div class="flex flex-1 flex-col">
+    <div flex="~ 1 col">
       <div i-ri-sun-line dark:i-ri-moon-line cursor-pointer dark:text-white @click="toggleDark" />
-      <main>
+      <main flex-1>
         <slot />
       </main>
     </div>
@@ -60,5 +60,6 @@ body {
 .sepia-mode body {
   background-color: #f1e7d0;
   color: #433422;
+  color-scheme: dark;
 }
 </style>
