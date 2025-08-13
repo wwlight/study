@@ -21,11 +21,10 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
-    "@iconify/json": "^2.2.371",
+    "@iconify/json": "^2.2.373",
     "@nuxt/eslint": "^1.8.0",
     "@unocss/eslint-plugin": "^66.4.2",
     "@unocss/nuxt": "^66.4.2",
-    "@unocss/preset-rem-to-px": "^66.4.2",
     "eslint": "^9.33.0",
     "eslint-plugin-format": "^1.0.1",
     "sass": "^1.90.0",

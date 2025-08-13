@@ -19,12 +19,12 @@ function handleMenuClick(menu: any) {
 </script>
 
 <template>
-  <div class="absolute size-full flex">
+  <div class="flex size-full absolute">
     <aside w-210>
       <ul>
         <li
           v-for="menu in routes" :key="menu.path"
-          class="cursor-pointer px-12 py-6 hover:(bg-#eee text-black) dark:text-white"
+          class="px-12 py-6 cursor-pointer dark:text-white hover:(text-black bg-#eee)"
           :class="[activeName === menu.name && 'bg-#eee !text-black']" @click="handleMenuClick(menu)"
         >
           {{ menu?.meta?.title || menu.name }}

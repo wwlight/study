@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div grid grid-cols-2 w-210 gap-10>
-    <div col-span-2 row-span-2 aspect-square bg-gray-300 />
-    <div size-100 bg-gray-300 />
-    <div size-100 bg-gray-300 />
+  <div gap-10 grid grid-cols-2 w-210>
+    <div bg-gray-300 col-span-2 row-span-2 aspect-square />
+    <div bg-gray-300 size-100 />
+    <div bg-gray-300 size-100 />
   </div>
 </template>

@@ -31,7 +31,7 @@ function handleClick(e: MouseEvent) {
 
 <template>
   <ul ref="ul" class="relative" flex="center gap-20">
-    <div class="absolute z--1 rd-2 bg-blue-500 transition-all duration-300" :style />
+    <div class="rd-2 bg-blue-500 transition-all duration-300 absolute z--1" :style />
     <li v-for="item in list" :key="item" @click="handleClick">
       {{ item }}
     </li>

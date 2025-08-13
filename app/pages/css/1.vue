@@ -11,17 +11,17 @@ definePageMeta({
 <template>
   <div class="size-full" flex="~ justify-center gap-2xl">
     <div
-      class="[isolation:isolate] absolute top-100px of-hidden rd-2px px-xl before:([background:linear-gradient(#fff_50%,#000_50%)] absolute left-[calc(50%-50vw)] top-[calc(50%-50vw)] size-100vw animate-spin animate-duration-3s content-[''])"
+      class="px-xl rd-2px [isolation:isolate] top-100px absolute of-hidden before:(size-100vw content-[''] [background:linear-gradient(#fff_50%,#000_50%)] left-[calc(50%-50vw)] top-[calc(50%-50vw)] absolute animate-spin animate-duration-3s)"
     >
-      <div class="[mix-blend-mode:difference] relative z-1 size-full text-300% text-#fff font-800 font-mono">
+      <div class="text-300% text-#fff font-800 font-mono size-full [mix-blend-mode:difference] relative z-1">
         文本反差色效果
       </div>
     </div>
     <div
-      class="custom-animation [isolation:isolate] absolute top-200px of-hidden rd-2px px-xl before:(absolute left-0 top-[calc(50%-50vw)] size-100vw bg-#fff content-[''])"
+      class="custom-animation px-xl rd-2px [isolation:isolate] top-200px absolute of-hidden before:(bg-#fff size-100vw content-[''] left-0 top-[calc(50%-50vw)] absolute)"
       before-content="left infinite alternate 2s linear"
     >
-      <div class="[mix-blend-mode:difference] relative z-1 size-full text-300% text-#fff font-800 font-mono">
+      <div class="text-300% text-#fff font-800 font-mono size-full [mix-blend-mode:difference] relative z-1">
         文本反差色效果2
       </div>
     </div>
