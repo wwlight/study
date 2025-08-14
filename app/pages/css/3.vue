@@ -5,6 +5,7 @@ definePageMeta({
 
 const ul = useTemplateRef('ul')
 const list = ref<string[]>(['HTML', 'CSS', 'Javascript', 'Nodejs', 'Vue', 'React'])
+const activeIndex = ref(0)
 const style = ref({})
 
 onMounted(() => {
@@ -24,15 +25,19 @@ function init() {
   firstItem && indicator(firstItem)
 }
 
-function handleClick(e: MouseEvent) {
+function handleClick(e: MouseEvent, index: number) {
   indicator(e.target as HTMLElement)
+  activeIndex.value = index
 }
 </script>
 
 <template>
   <ul ref="ul" class="relative" flex="center gap-20">
     <div class="rd-2 bg-blue-500 transition-all duration-300 absolute z--1" :style />
-    <li v-for="item in list" :key="item" @click="handleClick">
+    <li
+      v-for="item, index in list" :key="item" :class="[activeIndex === index && '!text-white']"
+      @click="handleClick($event, index)"
+    >
       {{ item }}
     </li>
   </ul>
@@ -40,6 +45,6 @@ function handleClick(e: MouseEvent) {
 
 <style scoped lang="scss">
 ul li {
-  @apply: list-none px-20 py-10 cursor-pointer text-20 dark:text-white text-black;
+  @apply: list-none px-20 py-10 cursor-pointer text-20 dark:text-white text-black transition-color-300;
 }
 </style>

@@ -2,7 +2,10 @@
 const router = useRouter()
 const route = useRoute()
 
-const routes = router.getRoutes()
+const routes = router.getRoutes().toSorted((a, b) => {
+  return (a.meta?.order as number || 0) - (b.meta?.order as number || 0)
+})
+
 const activeName = ref(route.name || 'index')
 
 const isDark = useDark({
@@ -24,7 +27,7 @@ function handleMenuClick(menu: any) {
       <ul>
         <li
           v-for="menu in routes" :key="menu.path"
-          class="px-12 py-6 cursor-pointer dark:text-white hover:(text-black bg-#eee)"
+          class="px-12 py-10 rd-3 cursor-pointer transition-all dark:text-white hover:(text-black bg-#eee)"
           :class="[activeName === menu.name && 'bg-#eee !text-black']" @click="handleMenuClick(menu)"
         >
           {{ menu?.meta?.title || menu.name }}
@@ -32,8 +35,10 @@ function handleMenuClick(menu: any) {
       </ul>
     </aside>
     <div flex="~ 1 col">
-      <div class="i-ri-sun-line dark:i-ri-moon-line cursor-pointer dark:text-white" @click="toggleDark()" />
-      <main flex-1>
+      <div class="p-10">
+        <div class="i-ri-sun-line dark:i-ri-moon-line cursor-pointer float-end dark:text-white" @click="toggleDark()" />
+      </div>
+      <main flex-1 overflow-y-scroll>
         <slot />
       </main>
     </div>

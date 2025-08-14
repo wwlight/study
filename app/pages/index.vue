@@ -1,5 +1,8 @@
 <script setup lang="ts">
-
+definePageMeta({
+  title: '首页',
+  order: -1,
+})
 </script>
 
 <template>

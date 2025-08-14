@@ -1,15 +1,11 @@
 <script setup lang="ts">
-defineOptions({
-  name: 'Demo',
-})
-
 definePageMeta({
   title: '文本反差色效果',
 })
 </script>
 
 <template>
-  <div class="size-full" flex="~ justify-center gap-2xl">
+  <div class="h-full relative" flex="~ justify-center gap-2xl">
     <div
       class="px-xl rd-2px [isolation:isolate] top-100px absolute of-hidden before:(size-100vw content-[''] [background:linear-gradient(#fff_50%,#000_50%)] left-[calc(50%-50vw)] top-[calc(50%-50vw)] absolute animate-spin animate-duration-3s)"
     >
