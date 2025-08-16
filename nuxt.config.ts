@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
+    baseURL: process.env.NUXT_PUBLIC_BASE_URL || '/',
   },
   features: {
     inlineStyles: false,
