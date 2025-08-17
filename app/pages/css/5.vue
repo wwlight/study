@@ -5,7 +5,9 @@ definePageMeta({
 </script>
 
 <template>
-  <div>阴影</div>
+  <div class="dark:text-black">
+    阴影
+  </div>
 </template>
 
 <style scoped lang="scss">

@@ -7,7 +7,11 @@ const routes = router.getRoutes().toSorted((a, b) => {
   return (a.meta?.order as number || 0) - (b.meta?.order as number || 0)
 })
 const activeName = ref(route.name || 'index')
+const style = ref({})
 
+onMounted(() => {
+  init()
+})
 /**
  * https://github.com/unocss/unocss/blob/main/packages-integrations/inspector/client/components/NarBar.vue
  */
@@ -52,20 +56,37 @@ function toggleDark(event?: MouseEvent) {
   })
 }
 
-function handleMenuClick(menu: any) {
+function handleMenuClick(e: MouseEvent, menu: any) {
   activeName.value = menu.name
   navigateTo(menu.path)
+  indicator(e.target as HTMLElement)
+}
+
+function indicator(e: HTMLElement) {
+  Object.assign(style.value, {
+    top: `${e.offsetTop}px`,
+    width: `${e.offsetWidth}px`,
+    height: `${e.offsetHeight}px`,
+  })
+}
+
+function init() {
+  const liNodeList = document.querySelectorAll('aside ul li') as NodeListOf<HTMLElement>
+  const index = routes.findIndex(r => r.name === activeName.value)
+  const initItemIndex = index >= 0 ? index : 0
+  liNodeList && indicator(liNodeList[initItemIndex] as HTMLElement)
 }
 </script>
 
 <template>
   <div class="flex size-full absolute">
-    <aside w-210>
-      <ul>
+    <aside class="p-10 min-w-300 w-300 overflow-y-scroll">
+      <ul class="relative space-y-10">
+        <div class="rd-2 bg-blue-500 transition-all duration-300 absolute z--1" :style />
         <li
           v-for="menu in routes" :key="menu.path"
-          class="px-12 py-10 rd-3 cursor-pointer transition-all dark:text-white hover:(text-black bg-#eee)"
-          :class="[activeName === menu.name && 'bg-#eee !text-black']" @click="handleMenuClick(menu)"
+          class="px-12 py-10 rd-3 cursor-pointer transition-all transition-color-300 dark:text-white"
+          :class="[activeName === menu.name && !isDark && 'text-white']" @click="handleMenuClick($event, menu)"
         >
           {{ menu?.meta?.title || menu.name }}
         </li>
