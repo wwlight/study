@@ -6,56 +6,56 @@ definePageMeta({
 
 <template>
   <div class="masonry space-y-20">
-    <div class="item h-460 w-360">
-      <img src="https://picsum.photos/360/460?random=1" alt="">
+    <div class="item h-460 w-320">
+      <img src="https://picsum.photos/320/460?random=1" alt="">
     </div>
-    <div class="item h-400 w-360">
-      <img src="https://picsum.photos/360/420?random=2" alt="">
+    <div class="item h-400 w-320">
+      <img src="https://picsum.photos/320/420?random=2" alt="">
     </div>
-    <div class="item h-420 w-360">
-      <img src="https://picsum.photos/360/400?random=3" alt="">
+    <div class="item h-420 w-320">
+      <img src="https://picsum.photos/320/400?random=3" alt="">
     </div>
-    <div class="item h-430 w-360">
-      <img src="https://picsum.photos/360/430?random=4" alt="">
+    <div class="item h-430 w-320">
+      <img src="https://picsum.photos/320/430?random=4" alt="">
     </div>
-    <div class="item h-460 w-360">
-      <img src="https://picsum.photos/360/460?random=5" alt="">
+    <div class="item h-460 w-320">
+      <img src="https://picsum.photos/320/460?random=5" alt="">
     </div>
-    <div class="item h-400 w-360">
-      <img src="https://picsum.photos/360/400?random=6" alt="">
+    <div class="item h-400 w-320">
+      <img src="https://picsum.photos/320/400?random=6" alt="">
     </div>
-    <div class="item h-420 w-360">
-      <img src="https://picsum.photos/360/420?random=7" alt="">
+    <div class="item h-420 w-320">
+      <img src="https://picsum.photos/320/420?random=7" alt="">
     </div>
-    <div class="item h-440 w-360">
-      <img src="https://picsum.photos/360/440?random=8" alt="">
+    <div class="item h-440 w-320">
+      <img src="https://picsum.photos/320/440?random=8" alt="">
     </div>
     <div class="item w-3">
-      <img src="https://picsum.photos/360/460?random=9" alt="">
+      <img src="https://picsum.photos/320/460?random=9" alt="">
     </div>
-    <div class="item h-410 w-360">
-      <img src="https://picsum.photos/360/410?random=10" alt="">
+    <div class="item h-410 w-320">
+      <img src="https://picsum.photos/320/410?random=10" alt="">
     </div>
-    <div class="item h-460 w-360">
-      <img src="https://picsum.photos/360/460?random=11" alt="">
+    <div class="item h-460 w-320">
+      <img src="https://picsum.photos/320/460?random=11" alt="">
     </div>
-    <div class="item h-450 w-360">
-      <img src="https://picsum.photos/360/450?random=12" alt="">
+    <div class="item h-450 w-320">
+      <img src="https://picsum.photos/320/450?random=12" alt="">
     </div>
-    <div class="item h-460 w-360">
-      <img src="https://picsum.photos/360/460?random=13" alt="">
+    <div class="item h-460 w-320">
+      <img src="https://picsum.photos/320/460?random=13" alt="">
     </div>
-    <div class="item h-420 w-360">
-      <img src="https://picsum.photos/360/420?random=14" alt="">
+    <div class="item h-420 w-320">
+      <img src="https://picsum.photos/320/420?random=14" alt="">
     </div>
-    <div class="item h-440 w-360">
-      <img src="https://picsum.photos/360/440?random=15" alt="">
+    <div class="item h-440 w-320">
+      <img src="https://picsum.photos/320/440?random=15" alt="">
     </div>
-    <div class="item h-460 w-360">
-      <img src="https://picsum.photos/360/460?random=16" alt="">
+    <div class="item h-460 w-320">
+      <img src="https://picsum.photos/320/460?random=16" alt="">
     </div>
-    <div class="item h-420 w-360">
-      <img src="https://picsum.photos/360/420?random=17" alt="">
+    <div class="item h-420 w-320">
+      <img src="https://picsum.photos/320/420?random=17" alt="">
     </div>
   </div>
 </template>

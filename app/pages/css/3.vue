@@ -35,7 +35,7 @@ function handleClick(e: MouseEvent, index: number) {
   <ul ref="ul" class="relative" flex="center gap-20">
     <div class="rd-2 bg-blue-500 transition-all duration-300 absolute z--1" :style />
     <li
-      v-for="item, index in list" :key="item" :class="[activeIndex === index && 'text-white']"
+      v-for="item, index in list" :key="item" :class="[activeIndex === index && '!text-white']"
       @click="handleClick($event, index)"
     >
       {{ item }}
