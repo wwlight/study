@@ -1,3 +1,5 @@
+import writeRoutesToFile from './app/utils/writeRoutesToFile'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -20,7 +22,18 @@ export default defineNuxtConfig({
   features: {
     inlineStyles: false,
   },
+  experimental: {
+    extraPageMetaExtractionKeys: ['title', 'order'],
+  },
   compatibilityDate: '2025-07-15',
+  hooks: {
+    'pages:resolved': async (pages) => {
+      const routes = pages.map(
+        ({ name, path, children, meta }) => ({ name, path, children, meta }),
+      )
+      writeRoutesToFile(routes)
+    },
+  },
   eslint: {
     config: {
       standalone: false,

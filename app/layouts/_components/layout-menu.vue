@@ -1,108 +1,89 @@
 <script setup lang="ts">
-import type { RouteRecordRaw } from 'vue-router'
+import type { NuxtPage } from 'nuxt/schema'
+import groupedRoutes from '~~/public/routes.json'
 
 defineOptions({
   name: 'LayoutMenu',
 })
 
-const route = useRoute()
-const router = useRouter()
-const isDark = useDark()
+const isSubVisible = ref(false)
+const activeMenu = ref({ name: '', title: '' })
+const subMenu = ref<NuxtPage[]>([])
+const subActiveName = ref('')
 
-const activeName = ref(route.name || 'index')
-const style = ref({})
+function handleMenuClick(menu: any) {
+  const { name, title, children } = menu
+  activeMenu.value = { name, title }
 
-onMounted(() => {
-  init()
-})
+  isSubVisible.value = true
+  subMenu.value = children || []
+  subActiveName.value = children[0]?.name || ''
+  navigateTo(children[0]?.path)
+}
 
-// function groupRoutesWithCustomTitles(routes: RouteRecordRaw[], titleMap: Record<string, string> = {}) {
-//   const grouped: Record<string, { name: string, title: string, routes: RouteRecordRaw[] }> = {}
+function handleMenuBack() {
+  isSubVisible.value = false
+  navigateTo(`/${activeMenu.value.name}`)
+  subActiveName.value = ''
+}
 
-//   routes.forEach((route: RouteRecordRaw) => {
-//     if (route.path === '/')
-//       return
-
-//     const segments = route.path.split('/').filter(segment => segment)
-
-//     if (segments.length === 0)
-//       return
-
-//     const groupName = segments[0]!
-//     console.log(groupName)
-
-//     const groupTitle = titleMap[groupName!] || groupName.toUpperCase()
-
-//     if (!grouped[groupName]) {
-//       grouped[groupName] = {
-//         name: groupName,
-//         title: groupTitle,
-//         routes: [],
-//       }
-//     }
-
-//     grouped[groupName].routes.push(route)
-//   })
-
-//   return Object.values(grouped)
-// }
-
-// // 使用自定义标题映射
-// const titleMap: Record<string, string> = {
-//   css: 'CSS 示例',
-//   js: 'JavaScript 示例',
-//   api: 'API 接口',
-// }
-const routes = router.getRoutes().toSorted((a: RouteRecordRaw, b: RouteRecordRaw) => {
-  return (a.meta?.order as number || 0) - (b.meta?.order as number || 0)
-})
-// const groupedRoutes = groupRoutesWithCustomTitles(routes, titleMap)
-// console.log(groupedRoutes)
-
-function handleMenuClick(e: MouseEvent, menu: any) {
-  activeName.value = menu.name
+function handleSubMenuClick(menu: any) {
+  subActiveName.value = menu.name
   navigateTo(menu.path)
-  indicator(e.target as HTMLElement)
-}
-
-function indicator(e: HTMLElement) {
-  Object.assign(style.value, {
-    top: `${e.offsetTop}px`,
-    width: `${e.offsetWidth}px`,
-    height: `${e.offsetHeight}px`,
-  })
-}
-
-function init() {
-  const liNodeList = document.querySelectorAll('aside ul li') as NodeListOf<HTMLElement>
-  const index = routes.findIndex((r: RouteRecordRaw) => r.name === activeName.value)
-  const initItemIndex = index >= 0 ? index : 0
-  liNodeList && indicator(liNodeList[initItemIndex] as HTMLElement)
 }
 </script>
 
 <template>
-  <ul class="menu-root">
-    <div class="menu-mask" :style />
-    <li
-      v-for="menu in routes" :key="menu.path" class="menu-item"
-      :class="[activeName === menu.name && !isDark && 'text-white']" @click="handleMenuClick($event, menu)"
-    >
-      {{ menu?.meta?.title || menu.name }}
-    </li>
-  </ul>
+  <aside flex="~ col" class="b-e b-e-[--color-wl-border] min-w-fit w-[--wl-menu-width] start-0 bottom-0 top-0 fixed">
+    <div class="flex-1 relative of-hidden">
+      <Transition
+        enter-active-class="animate-slide-in-left animate-duration-200"
+        leave-active-class="animate-slide-out-left animate-duration-200"
+      >
+        <ul v-if="!isSubVisible" class="size-full absolute">
+          <li
+            v-for="menu in groupedRoutes" :key="menu.name" class="menu-item" @click="handleMenuClick(menu)"
+          >
+            <span>{{ menu.title }}</span>
+            <i class="i-lucide-chevron-right" />
+          </li>
+        </ul>
+      </Transition>
+      <Transition
+        enter-active-class="animate-slide-in-right animate-duration-200"
+        leave-active-class="animate-slide-out-right animate-duration-200"
+      >
+        <ul v-if="isSubVisible" class="size-full absolute">
+          <li class="menu-item b-(b-1 b-[--color-wl-border] b-solid)" @click="handleMenuBack">
+            <i class="i-lucide-chevron-left" />
+            <span class="flex-1">{{ activeMenu!.title }}</span>
+          </li>
+          <li
+            v-for="menu in subMenu" :key="menu.name" class="menu-item m-3 !pl-30"
+            :class="[subActiveName === menu.name && 'active']" @click="handleSubMenuClick(menu)"
+          >
+            <span>{{ menu.meta?.title }}</span>
+          </li>
+        </ul>
+      </Transition>
+    </div>
+    <div class="p-10 b-bs b-bs-[--color-wl-border] flex">
+      <NuxtLink href="https://github.com/wwlight/study" target="_blank" class="flex-center size-34 cursor-pointer">
+        <div class="i-ri-github-fill" />
+      </NuxtLink>
+      <div class="ml-a flex-center size-34 cursor-pointer" @click="useToggleDark">
+        <div class="i-ri-sun-line dark:i-ri-moon-line" />
+      </div>
+    </div>
+  </aside>
 </template>
 
 <style scoped lang="scss">
-.menu-root {
-  @apply: w-256 relative space-y-10;
+.menu-item {
+  @apply: px-12 py-10 rd-3 cursor-pointer transition-all transition-color-300 dark:text-white flex justify-between items-center gap-5;
 
-  .menu-mask {
-    @apply: rd-2 bg-blue-500 transition-all duration-300 absolute z--1 ease-in-out;
-  }
-
-  .menu-item {
-    @apply: px-12 py-10 rd-3 cursor-pointer transition-all transition-color-300 dark:text-white;
+  &.active {
+    @apply: bg-blue-500 text-white transition-all duration-300 ease-in-out;
   }
 }
 </style>
