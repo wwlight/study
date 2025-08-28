@@ -7,29 +7,30 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "preview": "nuxt preview",
+    "preinstall": "npx only-allow pnpm",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
     "nuxt": "^4.0.3",
-    "vue": "^3.5.19",
+    "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
-    "@iconify/json": "^2.2.377",
+    "@iconify/json": "^2.2.379",
     "@nuxt/eslint": "^1.9.0",
     "@types/lodash-es": "^4.17.12",
     "@unocss/eslint-plugin": "^66.4.2",
     "@unocss/nuxt": "^66.4.2",
-    "@vueuse/core": "^13.7.0",
-    "@vueuse/nuxt": "^13.7.0",
-    "eslint": "^9.33.0",
+    "@vueuse/core": "^13.8.0",
+    "@vueuse/nuxt": "^13.8.0",
+    "eslint": "^9.34.0",
     "eslint-plugin-format": "^1.0.1",
-    "sass": "^1.90.0",
+    "sass": "^1.91.0",
     "unocss": "^66.4.2"
   }
 }
