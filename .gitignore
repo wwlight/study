@@ -23,4 +23,4 @@ logs
 .env.*
 !.env.example
 
-public/routes.json
+public/menu-data.json

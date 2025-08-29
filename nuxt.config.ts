@@ -1,4 +1,4 @@
-import writeRoutesToFile from './app/utils/writeRoutesToFile'
+import generateMenuData from './app/utils/generateMenuData'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -27,11 +27,11 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-07-15',
   hooks: {
-    'pages:resolved': async (pages) => {
+    'pages:resolved': (pages) => {
       const routes = pages.map(
         ({ name, path, children, meta }) => ({ name, path, children, meta }),
       )
-      writeRoutesToFile(routes)
+      generateMenuData(routes)
     },
   },
   eslint: {

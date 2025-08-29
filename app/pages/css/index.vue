@@ -1,6 +1,11 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'CssPage',
+  name: 'CSSPage',
+})
+
+definePageMeta({
+  title: 'CSS 示例',
+  order: 999,
 })
 </script>
 

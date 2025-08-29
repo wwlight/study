@@ -1,35 +1,70 @@
 <script setup lang="ts">
 import type { NuxtPage } from 'nuxt/schema'
-import groupedRoutes from '~~/public/routes.json'
+import type { GroupRouteItem } from '~/types'
+import menuData from '~~/public/menu-data.json'
 
 defineOptions({
   name: 'LayoutMenu',
 })
 
-const isSubVisible = ref(false)
+const route = useRoute()
 const activeMenu = ref({ name: '', title: '' })
 const subMenu = ref<NuxtPage[]>([])
-const subActiveName = ref('')
+const isSubVisible = ref(false)
+const isSubActiveName = ref('')
+
+onMounted(() => {
+  initActiveMenu()
+})
+
+function initActiveMenu() {
+  const segments = route.path.split('/').filter(Boolean)
+  if (!segments.length)
+    return
+
+  const segment = segments[0]!
+  if (segments.length > 1) {
+    const { name, title, children } = menuData.find((item: GroupRouteItem) => item.name === segment)!
+    subMenu.value = children
+    isSubVisible.value = true
+    isSubActiveName.value = route.name as string
+    Object.assign(activeMenu.value, { name, title })
+  }
+  else {
+    isSubVisible.value = false
+    isSubActiveName.value = ''
+    Object.assign(activeMenu.value, {
+      name: segment,
+      title: route.meta?.title as string,
+    })
+  }
+}
 
 function handleMenuClick(menu: any) {
   const { name, title, children } = menu
-  activeMenu.value = { name, title }
+  Object.assign(activeMenu.value, { name, title })
 
+  if (!children.length) {
+    navigateTo({ name, replace: true })
+    return
+  }
+  const current = children[0]
+  subMenu.value = children
   isSubVisible.value = true
-  subMenu.value = children || []
-  subActiveName.value = children[0]?.name || ''
-  navigateTo(children[0]?.path)
+  isSubActiveName.value = current.name as string
+  navigateTo({ name: current?.name, replace: true })
 }
 
 function handleMenuBack() {
   isSubVisible.value = false
-  navigateTo(`/${activeMenu.value.name}`)
-  subActiveName.value = ''
+  isSubActiveName.value = ''
+  const { name } = activeMenu.value
+  navigateTo({ name, replace: true })
 }
 
-function handleSubMenuClick(menu: any) {
-  subActiveName.value = menu.name
-  navigateTo(menu.path)
+function handleSubMenuClick(menu: NuxtPage) {
+  isSubActiveName.value = menu.name as string
+  navigateTo({ name: menu.name, replace: true })
 }
 </script>
 
@@ -40,12 +75,13 @@ function handleSubMenuClick(menu: any) {
         enter-active-class="animate-slide-in-left animate-duration-200"
         leave-active-class="animate-slide-out-left animate-duration-200"
       >
-        <ul v-if="!isSubVisible" class="size-full absolute">
+        <ul v-if="!isSubVisible" class="flex flex-col size-full">
           <li
-            v-for="menu in groupedRoutes" :key="menu.name" class="menu-item" @click="handleMenuClick(menu)"
+            v-for="menu in menuData" :key="menu.name" class="menu-item"
+            :class="[activeMenu.name === menu.name && 'active']" @click="handleMenuClick(menu)"
           >
             <span>{{ menu.title }}</span>
-            <i class="i-lucide-chevron-right" />
+            <i v-if="!!menu.children.length" class="i-lucide-chevron-right" />
           </li>
         </ul>
       </Transition>
@@ -53,21 +89,22 @@ function handleSubMenuClick(menu: any) {
         enter-active-class="animate-slide-in-right animate-duration-200"
         leave-active-class="animate-slide-out-right animate-duration-200"
       >
-        <ul v-if="isSubVisible" class="size-full absolute">
-          <li class="menu-item b-(b-1 b-[--color-wl-border] b-solid)" @click="handleMenuBack">
+        <ul v-if="isSubVisible" class="flex flex-col size-full">
+          <li class="menu-item" @click="handleMenuBack">
             <i class="i-lucide-chevron-left" />
             <span class="flex-1">{{ activeMenu!.title }}</span>
           </li>
+          <div class="bg-[--color-wl-border] h-1 w-full" />
           <li
-            v-for="menu in subMenu" :key="menu.name" class="menu-item m-3 !pl-30"
-            :class="[subActiveName === menu.name && 'active']" @click="handleSubMenuClick(menu)"
+            v-for="menu in subMenu" :key="menu.name" class="menu-item !pl-30"
+            :class="[isSubActiveName === menu.name && 'active']" @click="handleSubMenuClick(menu)"
           >
             <span>{{ menu.meta?.title }}</span>
           </li>
         </ul>
       </Transition>
     </div>
-    <div class="p-10 b-bs b-bs-[--color-wl-border] flex">
+    <div class="p-5 b-bs-(1 [--color-wl-border] solid) flex">
       <NuxtLink href="https://github.com/wwlight/study" target="_blank" class="flex-center size-34 cursor-pointer">
         <div class="i-ri-github-fill" />
       </NuxtLink>
@@ -80,7 +117,7 @@ function handleSubMenuClick(menu: any) {
 
 <style scoped lang="scss">
 .menu-item {
-  @apply: px-12 py-10 rd-3 cursor-pointer transition-all transition-color-300 dark:text-white flex justify-between items-center gap-5;
+  @apply: px-12 py-5 my-3 mx-5 rd-3 cursor-pointer transition-all transition-300 dark:text-white flex justify-between items-center gap-5;
 
   &.active {
     @apply: bg-blue-500 text-white transition-all duration-300 ease-in-out;

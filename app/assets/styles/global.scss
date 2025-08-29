@@ -35,7 +35,6 @@ html {
 html.dark {
   color-scheme: dark;
   background: var(--color-wl-background);
-  color: white;
 }
 
 ::view-transition-old(root),
@@ -44,18 +43,16 @@ html.dark {
   mix-blend-mode: normal;
 }
 
-::view-transition-old(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 2147483646;
-}
-
+/* 分方向控制层级：
+    - 切到 dark：old 在上层（内收）
+    - 切到 light：new 在上层（外扩）
+*/
+::view-transition-new(root),
 .dark::view-transition-old(root) {
   z-index: 2147483646;
 }
 
+::view-transition-old(root),
 .dark::view-transition-new(root) {
   z-index: 1;
 }
