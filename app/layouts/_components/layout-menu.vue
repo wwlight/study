@@ -81,7 +81,7 @@ function handleSubMenuClick(menu: NuxtPage) {
             :class="[activeMenu.name === menu.name && 'active']" @click="handleMenuClick(menu)"
           >
             <span>{{ menu.title }}</span>
-            <i v-if="!!menu.children.length" class="i-lucide-chevron-right" />
+            <i v-if="!!menu.children.length" class="i-lucide:chevron-right" />
           </li>
         </ul>
       </Transition>
@@ -91,7 +91,7 @@ function handleSubMenuClick(menu: NuxtPage) {
       >
         <ul v-if="isSubVisible" class="flex flex-col size-full">
           <li class="menu-item" @click="handleMenuBack">
-            <i class="i-lucide-chevron-left" />
+            <i class="i-lucide:chevron-left" />
             <span class="flex-1">{{ activeMenu!.title }}</span>
           </li>
           <div class="bg-[--color-wl-border] h-1 w-full" />
@@ -104,12 +104,12 @@ function handleSubMenuClick(menu: NuxtPage) {
         </ul>
       </Transition>
     </div>
-    <div class="p-5 b-bs-(1 [--color-wl-border] solid) flex">
-      <NuxtLink href="https://github.com/wwlight/study" target="_blank" class="flex-center size-34 cursor-pointer">
-        <div class="i-ri-github-fill" />
+    <div class="px-10 py-5 b-bs-(1 [--color-wl-border] solid) flex">
+      <NuxtLink href="https://github.com/wwlight/study" target="_blank" class="flex-center size-32 cursor-pointer">
+        <i class="i-simple-icons:github" />
       </NuxtLink>
-      <div class="ml-a flex-center size-34 cursor-pointer" @click="useToggleDark">
-        <div class="i-ri-sun-line dark:i-ri-moon-line" />
+      <div class="hover:bg-elevated ml-a flex-center size-32 cursor-pointer" @click="useToggleDark">
+        <i class="i-lucide:sun dark:i-lucide:moon" />
       </div>
     </div>
   </aside>
