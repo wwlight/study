@@ -1,15 +1,14 @@
 {
-  "name": "nuxt-app",
+  "name": "study",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.15.1",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "postinstall": "nuxt prepare",
     "preview": "nuxt preview",
-    "preinstall": "npx only-allow pnpm",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
@@ -21,16 +20,17 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
-    "@iconify/json": "^2.2.379",
+    "@iconify-json/lucide": "^1.2.66",
+    "@iconify-json/simple-icons": "^1.2.50",
     "@nuxt/eslint": "^1.9.0",
     "@types/lodash-es": "^4.17.12",
-    "@unocss/eslint-plugin": "^66.4.2",
-    "@unocss/nuxt": "^66.4.2",
-    "@vueuse/core": "^13.8.0",
-    "@vueuse/nuxt": "^13.8.0",
+    "@unocss/eslint-plugin": "^66.5.0",
+    "@unocss/nuxt": "^66.5.0",
+    "@vueuse/core": "^13.9.0",
+    "@vueuse/nuxt": "^13.9.0",
     "eslint": "^9.34.0",
     "eslint-plugin-format": "^1.0.1",
     "sass": "^1.91.0",
-    "unocss": "^66.4.2"
+    "unocss": "^66.5.0"
   }
 }
