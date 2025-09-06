@@ -5,7 +5,7 @@ defineOptions({
 
 definePageMeta({
   title: 'Canvas 示例',
-  order: 998,
+  order: 997,
 })
 </script>
 
