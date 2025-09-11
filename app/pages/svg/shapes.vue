@@ -5,6 +5,7 @@ defineOptions({
 
 definePageMeta({
   title: '基本形状',
+  order: 10,
 })
 </script>
 
