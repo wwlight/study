@@ -2,7 +2,7 @@
   "name": "study",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.15.1",
+  "packageManager": "pnpm@10.22.0",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -14,23 +14,23 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
-    "nuxt": "^4.0.3",
-    "vue": "^3.5.20",
-    "vue-router": "^4.5.1"
+    "nuxt": "^4.2.1",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
-    "@iconify-json/lucide": "^1.2.66",
-    "@iconify-json/simple-icons": "^1.2.50",
-    "@nuxt/eslint": "^1.9.0",
+    "@antfu/eslint-config": "^6.2.0",
+    "@iconify-json/lucide": "^1.2.73",
+    "@iconify-json/simple-icons": "^1.2.58",
+    "@nuxt/eslint": "^1.10.0",
     "@types/lodash-es": "^4.17.12",
-    "@unocss/eslint-plugin": "^66.5.0",
-    "@unocss/nuxt": "^66.5.0",
-    "@vueuse/core": "^13.9.0",
-    "@vueuse/nuxt": "^13.9.0",
-    "eslint": "^9.34.0",
-    "eslint-plugin-format": "^1.0.1",
-    "sass": "^1.91.0",
-    "unocss": "^66.5.0"
+    "@unocss/eslint-plugin": "^66.5.6",
+    "@unocss/nuxt": "^66.5.6",
+    "@vueuse/core": "^14.0.0",
+    "@vueuse/nuxt": "^14.0.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-format": "^1.0.2",
+    "sass-embedded": "^1.93.3",
+    "unocss": "^66.5.6"
   }
 }
